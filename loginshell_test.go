@@ -1,26 +1,26 @@
 package loginshell
 
 import (
-    "testing"
-    "os"
-    "fmt"
-    "runtime"
+	"fmt"
+	"os"
+	"runtime"
+	"testing"
 )
 
 func TestShell(t *testing.T) {
-    shell, err := Shell()
-    if err != nil {
-        t.Error(err)
-    }
+	shell, err := Shell()
+	if err != nil {
+		t.Error(err)
+	}
 
-    if runtime.GOOS == "windows" {
-        if shell == "" {
-            t.Error("Output is empty!")
-        }
-    } else {
-        currentShell := os.Getenv("SHELL")
-        if shell != currentShell {
-            t.Error(fmt.Sprintf("Output: %s, Current login shell: %s", shell, currentShell))
-        }
-    }
+	if runtime.GOOS == "windows" {
+		if shell == "" {
+			t.Error("Output is empty!")
+		}
+	} else {
+		currentShell := os.Getenv("SHELL")
+		if shell != currentShell {
+			t.Error(fmt.Sprintf("Output: %s, Current login shell: %s", shell, currentShell))
+		}
+	}
 }
